@@ -1,0 +1,15 @@
+{
+  "name": "web-server",
+  "version": "0.0.1",
+  "description": "Web server del curso de node.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
