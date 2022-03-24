@@ -84,8 +84,11 @@ const usersDelete = async (req, res) => {
   // const user = await User.findByIdAndDelete(id);
   // desactivar usuario
   const user = await User.findByIdAndUpdate(id, { state: false });
+
+  const userAuthentication = req.user;
   res.json({
     user,
+    userAuthentication
   });
 };
 const usersPatch = (req, res) => {

@@ -1,0 +1,51 @@
+token 
+
+porque usar tokens
+
+por las varibles de sesión = se crea token por persona cuando se autentifica  y si la misma persona se autentifica en diferentes dispositivos tambien se crean token por cada dispositivos (es recomendable usarlo hasta 5000 usuarios despues de eso afecta el performance y requereria un buen servidor) .
+
+JWT json web tokens (Recomendado)
+
+se divide en 3 partes en
+Header: Parte roja y tiene informacion del algoritmo utilizado y el tipo de token
+PAYLOAD:contiene informacion que queremos que este en el token y es muy facil obtener ese codigo o informacion
+Firma : permite saber si el token es valido o no
+
+se utiliza porque si la persona quiere ir a una ruta se requereria el token y si no cumple se redirecciona, pero si cumple solo se hace una verificacion de que existe el token y ya no se almacena nada.
+
+ejemplo
+
+Header
+
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+
+PAYLOAD
+
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "iat": 1516239022
+}
+
+verificacion O Firma
+
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  your-256-bit-secret
+
+
+=== Encriptado se ve asi (cada punto separa el header, el payload y la firma)
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+
+
+Parse - JWT - Obtener Payload y fecha de creación y expiración
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+};

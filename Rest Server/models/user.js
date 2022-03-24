@@ -32,12 +32,12 @@ const UserSchema = Schema({
   },
 });
 
-
-/* Eliminar Datos que se muestran despues de guardar 
-* es como un mapper en .net 
-*/
+/* Eliminar Datos que se muestran al serializar
+ * es como un mapper en .net
+ */
 UserSchema.methods.toJSON = function () {
-  const { __v, password, ...user } = this.toObject();
+  const { __v, password, _id, ...user } = this.toObject();
+  user.uid = _id;
   return user;
 };
 

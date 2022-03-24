@@ -14,6 +14,7 @@ const emailExist = async (email = "") => {
     throw new Error("The email is registered");
   }
 };
+
 const idExist = async (id = "") => {
   const idRegistered = await User.findById(id);
   if (!idRegistered) {
