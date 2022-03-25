@@ -20,6 +20,7 @@ const UserSchema = Schema({
   role: {
     type: String,
     required: [true, "The rol is required"],
+    default: 'USER_ROLE'
   },
   state: {
     type: Boolean,
