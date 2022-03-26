@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const User = require("../models/user");
+const { User } = require("../models");
 const { generateJWT } = require("../helpers/generateJwt");
 const { googleVerify } = require("../helpers/google-verify");
 
@@ -56,7 +56,7 @@ const googleSignIn = async (req, res, next) => {
       const data = {
         name,
         email,
-        password:':P',
+        password: ":P",
         img,
         google: true,
       };
@@ -77,7 +77,7 @@ const googleSignIn = async (req, res, next) => {
     res.json({
       msg: "google signIn",
       token,
-      user
+      user,
     });
   } catch (error) {
     res.status(400).json({

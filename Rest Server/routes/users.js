@@ -17,6 +17,7 @@ const {
   usersPut,
   usersPost,
 } = require("../controllers/users");
+const { User } = require("../models");
 
 const router = Router();
 
@@ -46,7 +47,7 @@ router.put(
   [
     // el id es el parametro :id no el campo
     check("id", "Id mongo is invalid").isMongoId(),
-    check("id").custom(idExist),
+    check("id").custom((id)=> idExist(id,User)),
     check("role").custom(roleIsValid),
     validationFields,
   ],
@@ -59,7 +60,7 @@ router.delete(
     // validAdminRole,
     hasRole("ADMIN_ROLE"),
     check("id", "Id mongo is invalid").isMongoId(),
-    check("id").custom(idExist),
+    check("id").custom((id)=> idExist(id,User)),
     validationFields,
   ],
   usersDelete

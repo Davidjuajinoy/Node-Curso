@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 
-const User = require("../models/user");
+const { User } = require("../models");
 
 // const usersGet = (req, res) => {
 //   /* Query params */
@@ -88,7 +88,7 @@ const usersDelete = async (req, res) => {
   const userAuthentication = req.user;
   res.json({
     user,
-    userAuthentication
+    userAuthentication,
   });
 };
 const usersPatch = (req, res) => {
